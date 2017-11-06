@@ -2,12 +2,14 @@ const VariableTimeStep = (function() {
 	let maxTimeStep = 50,
 		last = 0,
 		delta = 0,
-		update;
+		update = null,
+		performancer = new Performancer()
 	return {
 		reset: () => start = performance.now(),
 		begin: (callback, pause) => {
 			update = function() {
 				delta = -last+(last = performance.now());
+				performancer.update(delta);
 				if (delta > maxTimeStep * 10) {
 					pause(delta);
 				} else if (delta > maxTimeStep * 3) {
