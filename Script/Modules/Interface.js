@@ -8,10 +8,10 @@ const Interface = (function() {
 		self.canvas = document.createElement("canvas");
 		self.ctx = self.canvas.getContext("2d");
 		self.wrapper.appendChild(self.canvas);
-		
+
 		self.wrapper.setStyle = (style) => self.wrapper.setAttribute("style", minifyStyle(style));
 		self.canvas.setSize = (width, height) => (self.canvas.width = width)&&(self.canvas.height = height);
-		
+
 		self.setCurrentScreen(ViewPrimitive);
 		[
 			["keydown", onRawKeyDown],
@@ -47,6 +47,7 @@ const Interface = (function() {
 			currentScreen.close();
 		currentScreen = object;
 		object.open(self.wrapper, self.canvas);
+		(object.onResize) && object.onResize(window.innerWidth, window.innerHeight);
 		object.draw(self.ctx);
 	}
 	function update(delta) {
