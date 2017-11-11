@@ -55,9 +55,8 @@ const StartView = {
 		}
 	},
 	onButtonPress(id) {
-		console.log(id);
 		if (id === -1) {
-			
+			onStartScreenButtonPress(id);
 		}
 	},
 	isPointInsideButton(x, y, btn) {
@@ -66,13 +65,17 @@ const StartView = {
 	onKeyUp(code) {
 		if (code == "Enter") {
 			this.onButtonPress(this.hoverButtonId);
-		} else if (code == "ArrowDown") {
+		} else if (code == "ArrowDown" || code == "ArrowRight" || code == "s" || code == "S") {
 			if (this.hoverButtonId < this.buttons.length-1) {
 				this.hoverButtonId++;
+			} else {
+				this.hoverButtonId = this.buttons.length-1;
 			}
-		} else if (code == "ArrowUp") {
+		} else if (code == "ArrowUp" || code == "ArrowLeft" || code == "w" || code == "W") {
 			if (this.hoverButtonId > 0) {
 				this.hoverButtonId--;
+			} else {
+				this.hoverButtonId = 0;
 			}
 		}
 	},
