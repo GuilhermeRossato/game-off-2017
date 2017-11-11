@@ -11,6 +11,30 @@ const Interface = (function() {
 		
 		self.wrapper.setStyle = (style) => self.wrapper.setAttribute("style", Interface.minifyStyle(style));
 		self.canvas.setSize = (width, height) => (self.canvas.width = width)&&(self.canvas.height = height);
+		
+		self.setCurrentScreen({});
+		[
+			["keydown", self.onRawKeyDown],
+			["keyup", self.onRawKeyUp],
+			["mousedown", self.onRawMouseDown],
+			["mousemove", self.onRawMouseMove],
+			["mouseup", self.onRawMouseUp],
+		].forEach(c => window.addEventListener(c[0], c[1].bind(self)));
+	}
+	function onRawKeyDown(event) {
+		(self.currentScreen.onKeyDown) && self.currentScreen.onKeyDown(event.key);
+	}
+	function onRawKeyUp(event) {
+		(self.currentScreen.onKeyUp) && self.currentScreen.onKeyUp(event.key);
+	}
+	function onRawMouseDown(event) {
+		(self.currentScreen.onMouseDown) && self.currentScreen.onMouseDown(event.button, event.clientX - self.canvas.offsetLeft, event.clientY - self.canvas.offsetTop);
+	}
+	function onRawMouseMove(event) {
+		(self.currentScreen.onMouseMove) && self.currentScreen.onMouseMove(event.clientX - self.canvas.offsetLeft, event.clientY - self.canvas.offsetTop);
+	}
+	function onRawMouseUp(event) {
+		(self.currentScreen.onMouseUp) && self.currentScreen.onMouseUp(event.button, event.clientX - self.canvas.offsetLeft, event.clientY - self.canvas.offsetTop);
 	}
 	function setCurrentScreen(object) {
 		if (!object)
