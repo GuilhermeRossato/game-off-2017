@@ -1,26 +1,27 @@
 const Application = (function() {
-	var self;
+	var self, paused;
 	function init() {
 		self = Application;
 		Interface.init("center");
 		Interface.setCurrentScreen(StartView);
 		VariableTimeStep.begin(Interface.update.bind(Interface), pause);
+		paused = false;
 	}
 	function pause() {
-		if (self.paused) return;
+		if (paused ) return;
+		document.title = "Paused - "+document.title;
 		Interface.sendPause();
-		(self.currentScreen.pause) && self.currentScreen.pause();
-		self.paused = true;
+		paused = true;
 	}
-	function unpause() {
-		if (!self.paused) return;
+	function resume() {
+		if (!paused) return;
+		document.title = document.title.substr(("Paused - ").length);
 		Interface.sendResume();
-		(self.currentScreen.unpause) && self.currentScreen.unpause();
-		self.paused = false;
+		paused = false;
 	}
 	return {
 		init: init,
 		pause: pause,
-		unpause: unpause
+		resume: resume
 	}
 })();

@@ -66,6 +66,8 @@ const Interface = (function() {
 		init: init,
 		setCurrentScreen: setCurrentScreen,
 		update: update,
-		minifyStyle: minifyStyle
+		minifyStyle: minifyStyle,
+		sendPause: sendPause,
+		sendResume: sendResume
 	}
 })();
