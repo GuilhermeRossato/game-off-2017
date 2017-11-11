@@ -19,9 +19,13 @@ const Application = (function() {
 		Interface.sendResume();
 		paused = false;
 	}
+	function onStartScreenButtonPress(id) {
+		
+	}
 	return {
 		init: init,
 		pause: pause,
-		resume: resume
+		resume: resume,
+		onStartScreenButtonPress: onStartScreenButtonPress,
 	}
 })();

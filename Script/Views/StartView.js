@@ -1,31 +1,122 @@
 const StartView = {
 	open(wrapper, canvas) {
-		wrapper.setStyle("background: #999;");
-		canvas.setSize(640, 480);
+		wrapper.setStyle("background: #fff;");
+		canvas.setSize(this.width = 640, this.height = 480);
+		this.shouldDraw = true;
+		this.animationCountdown = 0;
+		this.buttons = [
+			{x: (640-360)/2, y: 240-40-45, width: 360, height: 80, text: "Play", font: "bold 42px Courier"},
+			{x: (640-300)/2, y: 240-40+45, width: 300, height: 60, text: "Help", font: "bold 36px Courier"}
+		];
+		this.selectedButtonId = -1;
+		this.hoverButtonId = -1;
 	},
 	close() {
 		
 	},
 	update(delta) {
-		
+		if (this.animationCountdown) {
+			this.animationCountdown--;
+		}
+	},
+	drawButton: function(ctx, btn, id) {
+		var mid = [btn.x+btn.width/2, btn.y+btn.height/2];
+		ctx.save();
+		ctx.font = btn.font || "48px courier";
+		if (id == this.hoverButtonId) {
+			ctx.translate(mid[0], mid[1]);
+			var scale = (id == this.selectedButtonId)?0.96:0.99;
+			ctx.scale(scale, scale);
+			ctx.translate(-mid[0], -mid[1]);
+		}
+		ctx.strokeStyle = "#333";
+		ctx.fillStyle = "#DDD";
+		ctx.beginPath();
+		ctx.moveTo(btn.x, btn.y);
+		ctx.lineTo(btn.x+btn.width, btn.y);
+		ctx.lineTo(btn.x+btn.width, btn.y+btn.height);
+		ctx.lineTo(btn.x, btn.y+btn.height);
+		ctx.closePath();
+		ctx.fill();
+		ctx.stroke();
+		ctx.fillStyle = "#333";
+		ctx.fillText(btn.text, btn.x+btn.width/2, btn.y+btn.height/2);
+		ctx.restore();
 	},
 	draw(ctx) {
-		
+		if (this.shouldDraw || true) {
+			ctx.clearRect(0, 0, this.width, this.height);
+			ctx.textAlign = "center";
+			ctx.textBaseline = "middle";
+			this.buttons.forEach(this.drawButton.bind(this, ctx));
+			if (this.animationCountdown <= 0) {
+				this.shouldDraw = false;
+			}
+		}
 	},
-	// Not required:
-	onKeyDown(code) {
-		
+	onButtonPress(id) {
+		console.log(id);
+		if (id === -1) {
+			
+		}
+	},
+	isPointInsideButton(x, y, btn) {
+		return (x > btn.x && x < btn.x+btn.width && y > btn.y && y < btn.y+btn.height);
 	},
 	onKeyUp(code) {
-		
+		if (code == "Enter") {
+			this.onButtonPress(this.hoverButtonId);
+		} else if (code == "ArrowDown") {
+			if (this.hoverButtonId < this.buttons.length-1) {
+				this.hoverButtonId++;
+			}
+		} else if (code == "ArrowUp") {
+			if (this.hoverButtonId > 0) {
+				this.hoverButtonId--;
+			}
+		}
 	},
 	onMouseDown(btn, x, y) {
-		
+		var selectedId = -1;
+		this.buttons.some((btn,i)=>{
+			if (this.isPointInsideButton(x, y, btn)) {
+				selectedId = i;
+				return true;
+			}
+			return false;
+		});
+		if (selectedId != this.selectedButtonId) {
+			this.selectedButtonId = selectedId;
+			this.shouldDraw = true;
+		}
 	},
-	onMouseMove(btn, x, y) {
-		
+	onMouseMove(x, y) {
+		var selectedId = -1;
+		this.buttons.some((btn,i)=>{
+			if (this.isPointInsideButton(x, y, btn)) {
+				selectedId = i;
+				return true;
+			}
+			return false;
+		});
+		if (selectedId != this.hoverButtonId) {
+			this.hoverButtonId = selectedId;
+			this.shouldDraw = true;
+		}
 	},
 	onMouseUp(btn, x, y) {
-		
+		var selectedId = -1;
+		this.buttons.some((btn,i)=>{
+			if (this.isPointInsideButton(x, y, btn)) {
+				selectedId = i;
+				return true;
+			}
+			return false;
+		});
+		if (selectedId !== -1 && selectedId == this.selectedButtonId) {
+			this.onButtonPress(selectedId);
+			this.shouldDraw = true;
+			this.selectedButtonId = -1;
+		}
 	}
 }
