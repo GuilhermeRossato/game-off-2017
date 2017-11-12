@@ -4,7 +4,7 @@ const Application = (function() {
 		self = Application;
 		Interface.init("center");
 		Interface.setCurrentScreen(StartView);
-		VariableTimeStep.begin(Interface.update.bind(Interface), pause);
+		ConstantTimeStep.begin(Interface.update.bind(Interface), pause);
 		paused = false;
 	}
 	function pause() {

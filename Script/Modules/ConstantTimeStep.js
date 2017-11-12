@@ -1,5 +1,5 @@
-const VariableTimeStep = (function() {
-	let maxTimeStep = 50,
+const ConstantTimeStep = (function() {
+	let timeStepLimit = 200,
 		last = 0,
 		delta = 0,
 		update = null,
@@ -10,19 +10,14 @@ const VariableTimeStep = (function() {
 			update = function() {
 				delta = -last+(last = performance.now());
 				performancer.update(delta);
-				if (delta > maxTimeStep * 10) {
+				if (delta > timeStepLimit) {
 					pause(delta);
-				} else if (delta > maxTimeStep * 3) {
-					// Drop frames silently
-				} else if (delta > maxTimeStep * 2) {
-					callback(delta/3);
-					callback(delta/3);
-					callback(delta/3);
-				} else if (delta > maxTimeStep) {
-					callback(delta/2);
-					callback(delta/2);
-				} else if (delta > 0 && delta <= maxTimeStep) {
-					callback(delta);
+				} else {
+					while (delta >= 16) {
+						callback();
+						delta -= 16;
+					}
+					last -= delta;
 				}
 				window.requestAnimationFrame(update);
 			}
