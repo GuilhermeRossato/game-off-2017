@@ -20,11 +20,13 @@ const Application = (function() {
 		paused = false;
 	}
 	function onMenuButtonPress(origin, id) {
-		if (origin == StartView) {
-			if (id == 1) {
+		if (origin === StartView) {
+			if (id === 0) {
+				Interface.setCurrentScreen(GameView);
+			} else if (id === 1) {
 				Interface.setCurrentScreen(HelpView);
 			}
-		} else if (origin == HelpView) {
+		} else if (origin === HelpView) {
 			Interface.setCurrentScreen(StartView);
 		}
 	}
