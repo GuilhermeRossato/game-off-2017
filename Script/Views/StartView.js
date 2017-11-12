@@ -44,7 +44,7 @@ const StartView = {
 		ctx.restore();
 	},
 	draw(ctx) {
-		if (this.shouldDraw || true) {
+		if (this.shouldDraw) {
 			ctx.clearRect(0, 0, this.width, this.height);
 			ctx.textAlign = "center";
 			ctx.textBaseline = "middle";
@@ -53,6 +53,16 @@ const StartView = {
 				this.shouldDraw = false;
 			}
 		}
+	},
+	onResize(width, height) {
+		if (width < 410) {
+			this.buttons[0].x = (640-(this.buttons[0].width = (3*width-510)/2))/2;
+			this.buttons[1].x = (640-(this.buttons[1].width = (3*width-630)/2))/2;
+		} else {
+			this.buttons[0].x = (640-(this.buttons[0].width = 360))/2;
+			this.buttons[1].x = (640-(this.buttons[1].width = 300))/2;
+		}
+		this.shouldDraw = true;
 	},
 	onButtonPress(id) {
 		if (id === -1) {
@@ -78,8 +88,9 @@ const StartView = {
 				this.hoverButtonId = 0;
 			}
 		}
-	},
+	}, 
 	onMouseDown(btn, x, y) {
+		if (btn != 0) return;
 		var selectedId = -1;
 		this.buttons.some((btn,i)=>{
 			if (this.isPointInsideButton(x, y, btn)) {
@@ -108,6 +119,7 @@ const StartView = {
 		}
 	},
 	onMouseUp(btn, x, y) {
+		if (btn != 0) return;
 		var selectedId = -1;
 		this.buttons.some((btn,i)=>{
 			if (this.isPointInsideButton(x, y, btn)) {
