@@ -19,13 +19,19 @@ const Application = (function() {
 		Interface.sendResume();
 		paused = false;
 	}
-	function onStartScreenButtonPress(id) {
-		
+	function onMenuButtonPress(origin, id) {
+		if (origin == StartView) {
+			if (id == 1) {
+				Interface.setCurrentScreen(HelpView);
+			}
+		} else if (origin == HelpView) {
+			Interface.setCurrentScreen(StartView);
+		}
 	}
 	return {
 		init: init,
 		pause: pause,
 		resume: resume,
-		onStartScreenButtonPress: onStartScreenButtonPress,
+		onMenuButtonPress: onMenuButtonPress,
 	}
 })();

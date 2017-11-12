@@ -65,8 +65,8 @@ const StartView = {
 		this.shouldDraw = true;
 	},
 	onButtonPress(id) {
-		if (id === -1) {
-			onStartScreenButtonPress(id);
+		if (id !== -1) {
+			Application.onMenuButtonPress(this, id);
 		}
 	},
 	isPointInsideButton(x, y, btn) {
