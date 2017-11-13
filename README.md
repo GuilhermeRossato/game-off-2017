@@ -5,4 +5,16 @@ My entry for the github gamejam.
 
 [Click here to run the current version](https://rawgit.com/GuilhermeRossato/game-off-2017/master/index.html)
 
-The initial idea is to create a 2D game with spaceships.
+The initial idea is to create a 2D game with spaceships with a time-travel
+
+Development
+-------------
+
+1. Created base for game development
+	1.1. Game loop
+	1.2. Event handlers
+2. Implemented the menu
+	2.1. "Help" Section
+![Menu](https://rawgit.com/GuilhermeRossato/game-off-2017/master/Images/Development/menu.gif)
+3. Implementation of the Enemies
+	3.1. Created 4 different polygon types
