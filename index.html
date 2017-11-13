@@ -1,22 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="overflow:hidden;">
 	<head>
 		<title>Game Off 2017 Entry</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script src="Script/setup.js"></script>
 	</head>
 	<body style="display:flex;align-items:center;justify-content:center;margin:0;width:100vw;height:100vh;overflow:none">
 		<div id="center" style="width:441px;height:291px;background-image:url('Images/loading.gif')"></div>
-		<script src="Script/settings.js"></script>
-		<script src="Script/Screens/TestScreen.js"></script>
-		<script src="Script/Screens/CreateEntityScreen.js"></script>
-		<script src="Script/Screens/PlayButtonScreen.js"></script>
-		<script src="Script/Modules/Performancer.js"></script>
-		<script src="Script/Modules/VariableTimeStep.js"></script>
-		<script src="Script/Classes/Entity.js"></script>
-		<script src="Script/Classes/Interface.js"></script>
-		<script src="Script/Modules/Application.js"></script>
-		<script src="Script/setup.js"></script>
+		<script src="Script/Data/settings.js" async></script>
+		<script src="Script/Data/entities.js" async></script>
+
+		<script src="Script/Classes/Entity.js" async></script>
+
+		<script src="Script/Views/StartView.js" async></script>
+		<script src="Script/Views/HelpView.js" async></script>
+		<script src="Script/Views/GameView.js" async></script>
+		<script src="Script/Views/TestView.js" async></script>
+		<script src="Script/Views/ViewEntityView.js" async></script>
+		<script src="Script/Views/ViewPrimitive.js" async></script>
+
+		<script src="Script/Modules/EntityProcessor.js" async></script>
+		<script src="Script/Modules/Application.js" async></script>
+		<script src="Script/Modules/Interface.js" async></script>
+		<script src="Script/Modules/Performancer.js" async></script>
+		<script src="Script/Modules/ConstantTimeStep.js" async></script>
 	</body>
 </html>

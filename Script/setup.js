@@ -1,8 +1,8 @@
 var app;
 
 function onWindowLoad() {
-	if (!app)
-		app = new Application();
+	app = Application;
+	app.init();
 }
 
 window.addEventListener("load", onWindowLoad);

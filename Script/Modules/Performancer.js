@@ -47,7 +47,7 @@ function Performancer(config = {}) {
 	canvas.width = 75;
 	canvas.height = 32;
 	canvas.setAttribute("style", `display:${config.compact?"block":"none"};width:${canvas.width}px;height:${canvas.height}px;background-color:#003300;margin:1px 3px 3px 3px;padding:0;image-rendering:pixelated;`);
-	span.setAttribute("style", `display: ${(config.hasLabel?"block":"none")};color:#00FF00;height:11px;text-align:center;display:block;width:${canvas.width}px;font-size:11px;font-family:Verdana, Arial;padding:0;margin:0px 3px 3px 3px;`);
+	span.setAttribute("style", `display: ${(config.hasLabel?"block":"none")};color:#00FF00;height:11px;text-align:center;display:block;width:${canvas.width}px;font-size:11px;font-family:Verdana, Arial;padding:0;margin:0px 3px 3px 3px;-ms-user-select:none;user-select:none;outline:0;`);
 	span.innerText = "STARTING";
 	/* Appends */
 	wrapper.appendChild(span);
