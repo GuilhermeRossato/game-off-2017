@@ -3,10 +3,12 @@ const ConstantTimeStep = (function() {
 		last = 0,
 		delta = 0,
 		update = null,
-		performancer = new Performancer({compact: settings.performancer.startCompact})
+		performancer;
 	return {
 		reset: () => start = performance.now(),
 		begin: (callback, pause) => {
+			if (!performancer)
+				performancer = new Performancer({compact: settings.performancer.startCompact});
 			update = function() {
 				delta = -last+(last = performance.now());
 				performancer.update(delta);
