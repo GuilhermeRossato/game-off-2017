@@ -25,6 +25,7 @@ const ConstantTimeStep = (function() {
 			}
 			last = performance.now();
 			window.requestAnimationFrame(update);
+			this.begin = undefined;
 		},
 		stop: () => {
 			update = function() {

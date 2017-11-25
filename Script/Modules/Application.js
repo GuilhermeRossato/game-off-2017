@@ -3,6 +3,7 @@ const Application = (function() {
 	function init() {
 		self = Application;
 		//Interface.setCurrentScreen(GameView);
+		self.init = undefined;
 	}
 	return {
 		init: init

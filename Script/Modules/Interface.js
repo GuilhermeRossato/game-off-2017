@@ -21,6 +21,7 @@ const Interface = (function() {
 			["mouseup", onRawMouseUp],
 			["resize", onRawResize],
 		].forEach(c => addEventListener(c[0], c[1]));
+		self.init = undefined;
 	}
 	function onRawKeyDown(event) {
 		(currentScreen.onKeyDown) && currentScreen.onKeyDown(event.key);
@@ -46,9 +47,9 @@ const Interface = (function() {
 		if (currentScreen)
 			currentScreen.close();
 		currentScreen = object;
-		object.open(self.wrapper, self.canvas);
-		(object.onResize) && object.onResize(window.innerWidth, window.innerHeight);
-		object.draw(self.ctx);
+		currentScreen.open(self.wrapper, self.canvas);
+		(currentScreen.onResize) && currentScreen.onResize(window.innerWidth, window.innerHeight);
+		currentScreen.draw(self.ctx);
 	}
 	function onMenuButtonPress(origin, id) {
 		if (origin === StartView) {
