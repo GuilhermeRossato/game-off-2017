@@ -1,0 +1,24 @@
+	
+	<script src="Script/Views/PrimitiveMenuView.js"></script>
+	<script src="Script/Views/PrimitiveView.js"></script>
+	<script src="Script/Views/ViewEntityView.js"></script>
+	<script src="Script/Views/ViewPrimitive.js"></script>
+	<script src="BlurTest/Application.js"></script>
+	<script src="BlurTest/script.js"></script>
+	<script src="Script/Classes/Camera.js"></script>
+	<script src="Script/Classes/Entity.js"></script>
+	<script src="Script/Classes/Player.js"></script>
+	<script src="Script/Classes/World.js"></script>
+	<script src="Script/Data/entities.js"></script>
+	<script src="Script/Data/settings.js"></script>
+	<script src="Script/Modules/Application.js"></script>
+	<script src="Script/Modules/ConstantTimeStep.js"></script>
+	<script src="Script/Modules/EntityProcessor.js"></script>
+	<script src="Script/Modules/Interface.js"></script>
+	<script src="Script/Modules/Performancer.js"></script>
+	<script src="Script/Modules/TimeSystem.js"></script>
+	<script src="Script/Screens/CreateEntityScreen.js"></script>
+	<script src="Script/Views/GameView.js"></script>
+	<script src="Script/Views/HelpView.js"></script>
+	<script src="Script/Views/StartView.js"></script>
+	<script src="Script/setup.js"></script>
