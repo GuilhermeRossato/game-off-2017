@@ -50,6 +50,17 @@ const Interface = (function() {
 		(object.onResize) && object.onResize(window.innerWidth, window.innerHeight);
 		object.draw(self.ctx);
 	}
+	function onMenuButtonPress(origin, id) {
+		if (origin === StartView) {
+			if (id === 0) {
+				self.setCurrentScreen(GameView);
+			} else if (id === 1) {
+				self.setCurrentScreen(HelpView);
+			}
+		} else if (origin === HelpView) {
+			self.setCurrentScreen(StartView);
+		}
+	}
 	function update(delta) {
 		currentScreen.update(delta);
 		currentScreen.draw(self.ctx);
@@ -66,6 +77,7 @@ const Interface = (function() {
 	return {
 		init: init,
 		setCurrentScreen: setCurrentScreen,
+		onMenuButtonPress: onMenuButtonPress,
 		update: update,
 		minifyStyle: minifyStyle,
 		sendPause: sendPause,

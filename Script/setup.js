@@ -1,8 +1,12 @@
-var app;
-
 function onWindowLoad() {
-	app = Application;
-	app.init();
+	Interface.init("center");
+	Interface.setCurrentScreen(StartView);
+
+	TimeSystem.init();
+
+	Application.init();
+
+	ConstantTimeStep.begin(Interface.update.bind(Interface), TimeSystem.pause.bind(TimeSystem));
 }
 
 window.addEventListener("load", onWindowLoad);
