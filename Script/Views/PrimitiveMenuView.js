@@ -84,7 +84,7 @@ const PrimitiveMenuView = {
 				this.hoverButtonId = 0;
 			}
 		}
-	}, 
+	},
 	onMouseDown(btn, x, y) {
 		if (btn != 0) return;
 		var selectedId = -1;

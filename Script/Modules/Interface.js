@@ -12,7 +12,7 @@ const Interface = (function() {
 		self.wrapper.setStyle = (style) => self.wrapper.setAttribute("style", minifyStyle(style));
 		self.canvas.setSize = (width, height) => (self.canvas.width = width)&&(self.canvas.height = height);
 
-		self.setCurrentScreen(ViewPrimitive);
+		self.setCurrentScreen(PrimitiveView);
 		[
 			["keydown", onRawKeyDown],
 			["keyup", onRawKeyUp],

@@ -4,10 +4,10 @@ const PrimitiveView = {
 		canvas.setSize(640, 480);
 	},
 	close() {
-		
+
 	},
 	update(delta) {
-		
+
 	},
 	draw(ctx) {
 		ctx.strokeRect(10, 10, 640-20, 480-20);
@@ -15,18 +15,18 @@ const PrimitiveView = {
 	},
 	// Optional:
 	onKeyDown(code) {
-		
+
 	},
 	onKeyUp(code) {
-		
+
 	},
 	onMouseDown(btn, x, y) {
-		
+
 	},
 	onMouseMove(btn, x, y) {
-		
+
 	},
 	onMouseUp(btn, x, y) {
-		
+
 	}
 }
