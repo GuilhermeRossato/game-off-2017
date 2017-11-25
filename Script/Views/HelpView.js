@@ -1,23 +1,18 @@
 const HelpView = {
 	open(wrapper, canvas) {
 		wrapper.setStyle("background: none;");
-		canvas.setSize(this.width = 640, this.height = 480);
-		this.animationCountdown = 0;
+		PrimitiveMenuView.open.call(this, wrapper, canvas);
 		this.buttons = [
 			{x: (640-300)/2, y: 240-40+45+60, width: 300, height: 60, text: "Exit", font: "bold 36px Courier"}
 		];
-		this.selectedButtonId = -1;
-		this.hoverButtonId = -1;
 	},
 	close() {
 		
 	},
 	update(delta) {
-		if (this.animationCountdown) {
-			this.animationCountdown--;
-		}
+		
 	},
-	drawTitles(ctx) {
+	drawContent(ctx) {
 		const mainText = [
 			"Avoid enemies not to die",
 			"Some enemies kill you more than others",
@@ -65,42 +60,37 @@ const HelpView = {
 			});
 		}
 	},
-	drawContents(ctx) {
-
-	},
 	draw(ctx) {
-		if (this.shouldDraw || true) {
+		if (this.shouldDraw) {
 			ctx.clearRect(0, 0, this.width, this.height);
-			this.drawTitles(ctx);
+			this.drawContent(ctx);
 			ctx.textAlign = "center";
 			ctx.textBaseline = "middle";
-			this.buttons.forEach(StartView.drawButton.bind(this, ctx));
+			this.buttons.forEach(PrimitiveButtonView.drawButton.bind(this, ctx));
 			if (this.animationCountdown <= 0) {
 				this.shouldDraw = false;
 			}
 		}
 	},
 	onResize(width, height) {
-		this.winWidth = width;
-		this.winHeight = height;
-		this.shouldDraw = true;
+		PrimitiveButtonView.onResize.call(this, width, height);
 	},
 	isPointInsideButton(x, y, btn) {
-		return (x > btn.x && x < btn.x+btn.width && y > btn.y && y < btn.y+btn.height);
+		return PrimitiveButtonView.isPointInsideButton.call(this, x, y, btn);
 	},
 	onButtonPress(id) {
-		StartView.onButtonPress.call(this, id);
+		PrimitiveButtonView.onButtonPress.call(this, id);
 	},
 	onKeyUp(code) {
-		StartView.onKeyUp.call(this, code);
+		PrimitiveButtonView.onKeyUp.call(this, code);
 	},
 	onMouseDown(btn, x, y) {
-		StartView.onMouseDown.call(this, btn, x, y);
+		PrimitiveButtonView.onMouseDown.call(this, btn, x, y);
 	},
 	onMouseMove(x, y) {
-		StartView.onMouseMove.call(this, x, y);
+		PrimitiveButtonView.onMouseMove.call(this, x, y);
 	},
 	onMouseUp(btn, x, y) {
-		StartView.onMouseUp.call(this, btn, x, y);
+		PrimitiveButtonView.onMouseUp.call(this, btn, x, y);
 	}
 }
