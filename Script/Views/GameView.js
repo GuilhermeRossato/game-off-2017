@@ -72,7 +72,7 @@ const GameView = {
 		});
 	},
 	onResize(width, height) {
-		this.size = Math.min(width, height)-10;
+		this.size = Math.min(width, height)-80;
 		this.canvas.setSize(this.size, this.size);
 	},
 	onKeyDown(code) {

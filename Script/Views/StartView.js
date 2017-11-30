@@ -24,6 +24,13 @@ const StartView = {
 		}
 	},
 	onResize(width, height) {
+		if (width < 410) {
+			this.buttons[0].x = (640-(this.buttons[0].width = (3*width-510)/2))/2;
+			this.buttons[1].x = (640-(this.buttons[1].width = (3*width-630)/2))/2;
+		} else {
+			this.buttons[0].x = (640-(this.buttons[0].width = 360))/2;
+			this.buttons[1].x = (640-(this.buttons[1].width = 300))/2;
+		}
 		PrimitiveMenuView.onResize.call(this, width, height);
 	},
 	isPointInsideButton(x, y, btn) {

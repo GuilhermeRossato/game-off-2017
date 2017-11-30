@@ -34,7 +34,7 @@ const HelpView = {
 			ctx.fillText("Mobile", this.width/2+this.width/4, 140);
 			ctx.font = "bold 12px courier";
 			mainText.forEach((text,i) => {
-				ctx.fillText(text, this.width/2, 60+20*i);
+				ctx.fillText(text, this.width/2, 40+20*i);
 			});
 			desktopText.forEach((text,i) => {
 				ctx.fillText(text, this.width/4, 190+20*i);
@@ -46,14 +46,14 @@ const HelpView = {
 			ctx.textAlign = "center";
 			ctx.font = "bold 24px courier";
 			ctx.fillStyle = "#333";
-			ctx.fillText("Mobile", this.width/2, 130);
+			ctx.fillText("Mobile", this.width/2, 120);
 			ctx.fillText("Desktop", this.width/2, 220);
 			ctx.font = "bold 12px courier";
 			mainText.forEach((text,i) => {
-				ctx.fillText(text, this.width/2, 60+20*i);
+				ctx.fillText(text, this.width/2, 30+20*i);
 			});
 			mobileText.forEach((text,i) => {
-				ctx.fillText(text, this.width/2, 160+20*i);
+				ctx.fillText(text, this.width/2, 150+20*i);
 			});
 			desktopText.forEach((text,i) => {
 				ctx.fillText(text, this.width/2, 250+20*i);
@@ -73,6 +73,8 @@ const HelpView = {
 		}
 	},
 	onResize(width, height) {
+		this.winWidth = width;
+		this.winHeight = height;
 		PrimitiveMenuView.onResize.call(this, width, height);
 	},
 	isPointInsideButton(x, y, btn) {

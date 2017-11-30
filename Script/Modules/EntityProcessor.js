@@ -14,7 +14,7 @@ const EntityProcessor = {
 			result = [];
 		//znPoints = 0;
 		//nDiv = 1;
-		console.log(x0, y0, x1, y1, dist);
+		//console.log(x0, y0, x1, y1, dist);
 		for (var i = 0 ; i < nPoints ; i++) {
 			var t = (1+i*3+2*Math.random())/nDiv;
 			var dev = (Math.random()*2-1)/this.constants.unitsPerDeviationsOnLine;
